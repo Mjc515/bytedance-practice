@@ -1,0 +1,11 @@
+{
+  "name": "bytedance-study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/chst365/bytedance-study.git",
+  "author": "chstz365 <chstz_365@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^4.1.2"
+  }
+}
