@@ -1,65 +1,38 @@
-#logo img {
-  width: 32px;
-  margin-right: 12px;
-  vertical-align: middle;
+.App {
+  text-align: center;
 }
 
-#logo {
-  height: 64px;
-  padding-left: 40px;
-  overflow: hidden;
-  color: #000000d9;
-  font-weight: 700;
-  font-size: 18px;
-  font-family: PuHuiTi,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji,sans-serif;
-  line-height: 64px;
-  letter-spacing: -.18px;
-  white-space: nowrap;
-  text-decoration: none;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-input {
-  vertical-align: middle;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-#menu {
-  height: 64px;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-#searchbox {
-  height: 64px;
-  line-height: 64px;
-  vertical-align: middle;
+.App-link {
+  color: #61dafb;
 }
 
-#menu li {
-  line-height: 64px;
-}
-
-ul#menu {
-  border-bottom: 0;
-}
-
-#biglogo img{
-  width: 500px;
-}
-
-#biglogo {
-  margin-top: 191px;
-  position: relative;
-}
-
-#dot {
-  position:absolute;
-  top: -5px;
-  left: 364px;
-}
-
-#btns {
-  margin-top: 50px;
-}
-
-#btns button {
-  margin-left: 8px;
-  margin-right: 8px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
