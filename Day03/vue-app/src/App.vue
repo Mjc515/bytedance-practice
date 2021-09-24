@@ -118,7 +118,7 @@ html,body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #02fa0f;
   margin: 0;
   display: flex;
   width: 100%;
@@ -149,7 +149,7 @@ html,body{
 .row {
   width: 100%;
   min-height: 300px;
-  background: rgb(131, 156, 230);
+  background: rgb(204, 230, 131);
   display: flex;
   padding: 20px;
   margin: 10px 0;
@@ -158,7 +158,7 @@ html,body{
 .col {
   height: 200px;
   min-width: 200px;
-  background: pink;
+  background: rgb(192, 196, 255);
   margin: 10px;
 }
 #dragable {

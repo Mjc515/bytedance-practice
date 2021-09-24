@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import { Button } from 'antd';
+import 'antd/dist/antd.less';
 
 function App(props) {
   console.log(arguments)
@@ -9,6 +11,7 @@ function App(props) {
   <img src={logo} className="App-logo" alt="logo" />
   <p>
     Edit <code>src/App.js</code> and save to reload.
+    <Button type="primary">click me</Button>
   </p>
   <a
     className="App-link"
