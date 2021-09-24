@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App template={data => <li>{data}</li>} datasource={[1,2,3,4,5]}></App>
   </React.StrictMode>,
   document.getElementById('root')
 );
