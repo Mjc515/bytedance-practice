@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+    }
+    #wrap {
+      margin: 20vh auto 0 auto;
+      width: 260px;
+      height: 50vh;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+    #list{
+      margin: 0;
+      padding: 10px 5px;
+      list-style:none;
+      font: 16px/2 "宋体"; 
+      height: 50vh;
+    }
+    #list li{
+      text-align: center;
+      border-bottom: 1px solid royalblue;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="wrap">
+    <ul id="list">
+    </ul>
+  </div>
+  <div style="text-align: center;margin-top: 20px;">
+    <button id="press">长按</button>
+    <button id="tap">点击</button>
+    <button id="button">正常</button>
+  </div>
+  
+  <script>
+    let list = document.querySelector('#list')
+    list.innerHTML = new Array(100).fill(0).map((item, idx) => {
+      return `<li>这是第${idx+1}个li</li>`
+    }).join('')
+  </script>
+  <script src="./gesture.js"></script>
+  <script>
+   enableGesture(list)
+  //  list.addEventListener("start", e => {
+  //    console.log("start")
+  //  })
+  //  list.addEventListener("move", e => {
+  //    console.log("move")
+  //  })
+  //  list.addEventListener("end", e => {
+  //    console.log("end")
+  //  })
+  //  pan
+   list.addEventListener("panstart", e => {
+     console.log("panstart")
+   })
+   list.addEventListener("pan", e => {
+     console.log("pan")
+   })
+   list.addEventListener("panend", e => {
+     console.log("panend")
+   })
+
+   let press = document.getElementById("press")
+   let tap = document.getElementById("tap")
+   let button = document.getElementById("button")
+   enableGesture(press)
+   enableGesture(tap)
+   enableGesture(button)
+  //  press
+   press.addEventListener("pressstart", e => {
+     console.log("pressstart")
+   })
+   press.addEventListener("pressend", e => {
+     console.log("pressend")
+   })
+   press.addEventListener("presscancel", e => {
+     console.log("presscancel")
+   })
+   press.addEventListener("tap", e => {
+     console.log("tap")
+   })
+  //  tap
+   tap.addEventListener("tap", e => {
+     console.log("tap")
+   })
+  ;</script>
+</body>
+</html>

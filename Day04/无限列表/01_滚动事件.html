@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="width: 100%;height: 2000px;background: #ededed;"></div>
+  <script>
+    window.onscroll = function() {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      let viewHeight = document.body.clientHeight
+      let scrollHeight = document.body.scrollHeight
+      console.log(scrollTop, viewHeight, scrollHeight)
+      if(scrollHeight - scrollTop <= viewHeight){
+        console.log("滚动到底部了~")
+      }
+    }
+  </script>
+</body>
+</html>
