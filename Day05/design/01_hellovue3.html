@@ -1,0 +1,59 @@
+<div id="app">
+  {{title}}
+  <comp></comp>
+</div>
+
+<script src="http://unpkg.com/vue@next"></script>
+<script>
+  // app实例创建
+  // VUE2 
+  // new Vue({
+  //   methods:{
+  //     onclick{
+  //       this.xxx
+  //     }
+  //   }
+  // })
+  // 1.为什么用函数的方式？   Vue3 React  函数式编程是未来
+  //    便于支持类型系统(ts), 消灭 "this"
+
+  // 扩展性: 自定义渲染器
+  const renderer = Vue.createRenderer({
+    querySelector(){},
+    createElement(){}
+  })
+  renderer.createApp({})
+
+  const app = Vue.createApp({
+    data() {
+      return {
+        title: 'hello, vue3!'
+      }
+    },
+    setup(){
+      // 消灭this
+      // 声明响应式数据
+      // 复用性、可读性、可维护性
+      const state = Vue.reactive({
+        title: 'vue3, hello'
+      })
+      return state
+    }
+  })
+  app.component('comp', {
+    template:'',
+    render(){
+      // vue2
+      // return h('div', {
+      //   attrs: {
+      //     title:this.title
+      //   }
+      // },'xxx')
+      // // vue3
+      return Vue.h('div', {
+        className: 'comp'
+      },'comp component')
+    }
+  })
+  app.mount('#app') 
+</script>

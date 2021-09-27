@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+    }
+    .nav{
+      width: 100vw;
+      height: 100px;
+      font-size: 5vw;
+      line-height: 10vw;
+      color: #fff;
+      text-align: center;
+    }
+    .red{
+      background-color: red;
+    }
+    .blue{
+      background-color: blue;
+    }
+    .green{
+      background-color: green;
+    }
+    .yellow{
+      background-color: yellow;
+    }
+    /* 进度条 */
+    .tip{
+      width: 80vw;
+      height: 1vw;
+      position: fixed;
+      top: 5vw;
+      left: 50vw;
+      transform: translate(-40vw, 0);
+      border-radius: 40vw;
+      z-index: 100;
+    }
+    .process{
+      border-radius: 40vw;
+      height: 100%;
+      width: 0;
+      background: pink;
+    }
+  </style>
+</head>
+<body>
+  <div class="tip">
+    <div class="process"></div>
+  </div>
+  <div class="nav blue">1</div>
+  <div class="nav yellow">2</div>
+  <div class="nav green">3</div>
+  <div class="nav red">4</div>
+  <div style="width:100%;height:2000px"></div>
+  <script>
+    let targetNav, offsetTop
+    window.onload = function() {
+      targetNav = document.querySelector('.green')
+      offsetTop = targetNav.offsetTop
+    }
+
+    let tip = document.querySelector('.tip')
+    let process = document.querySelector('.process')
+    window.onscroll = function() {
+      // 滑块高度
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // 视窗高度
+      let viewHeight = document.documentElement.clientHeight
+      // 页面完全高度
+      let scrollHeight = document.body.scrollHeight
+      console.log(scrollTop, viewHeight, scrollHeight)
+      // 进度条百分比
+      let percent = Math.ceil((scrollTop)/(scrollHeight-viewHeight) * 140)
+      if(scrollTop > 0 && percent > 10) {
+        tip.style.background = '#ededed'
+        process.style.width = Math.min(100, percent) + '%'
+      }else{
+        tip.style.background = 'none'
+        process.style.width = 0
+      }
+      
+      
+      if(scrollTop > offsetTop){
+        targetNav.style.position = "fixed"
+        targetNav.style.top = "0"
+        targetNav.nextElementSibling.style.marginTop =  targetNav.offsetHeight + "px"
+      }else{
+        targetNav.style.position = "relative"
+        targetNav.nextElementSibling.style.marginTop = 0
+      }
+      if(scrollHeight - scrollTop <= viewHeight){
+        // console.log("滚动到底部了~")
+      }
+    }
+  </script>
+</body>
+</html>

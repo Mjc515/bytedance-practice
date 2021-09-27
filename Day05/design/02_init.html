@@ -1,0 +1,87 @@
+<div id="app">
+  {{title}}
+  <comp></comp>
+</div>
+
+<script>
+  // 1.基本结构
+  const Vue = {
+    createApp(options) {
+      return {
+        mount(selector){
+          console.log('mount~')
+          // 1.找到宿主元素
+          const parent = document.querySelector(selector)
+          // 2.渲染页面
+          if(!options.render){
+            //   2.1 处理template:模板编译 (生成render函数 生成vnode patch函数生成真实dom)
+            //        这里简化模拟编译过程, 没有vnode这一步
+            options.render = this.compile(parent.innerHTML)
+          }
+          
+          // 兼容性处理: setup和其他选项
+          if(options.setup){
+            this.setupState = options.setup()
+          }
+          if(options.data){
+            this.data = options.data()
+          }
+
+          // app.xxx
+          const proxyData = new Proxy(this, {
+            get(target, key) {
+              // 先从setup中取, 如果取不到再从data中取
+              if(target.setupState && key in target.setupState){
+                return target.setupState[key]
+              }
+              return target.data[key]
+            },
+            set(target, key, val) {
+              if(target.setupState && key in target.setupState){
+                target.setupState[key] = val
+              }else{
+                target.data[key] = val
+              }
+            }
+          })
+
+
+            //   2.2 用户编写了render函数
+            //   将data()绑定到render函数的this,方便render取到值 (this.title)
+          // const el = options.render.call(options.data())
+          const el = options.render.call(proxyData)
+          
+          // 3.追加到宿主
+          parent.innerHTML = ''
+          parent.appendChild(el)
+        },
+        compile(template) {
+          // 返回一个 render()
+          // 1. template parse => ast 
+          // 2. generator => ast => render()
+          return function render() {
+            const h3 = document.createElement('h3')
+            h3.textContent = this.title
+            return h3
+          }
+        }
+      }
+    }
+  };
+</script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        title: 'hello, vue3!'
+      }
+    },
+    setup(){
+      return {
+        title: 'vue, hello !'
+      }
+    }
+  })
+
+  app.mount('#app')
+</script>
